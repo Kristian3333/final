@@ -9,19 +9,9 @@ app.set('view engine', 'ejs');
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-
-function connectToDatabase(uri) {
-    if (cachedDb) {
-        return Promise.resolve(cachedDb);
-    }
-    return mongoose.connect(uri).then((db) => {
-        cachedDb = db;
-        return db;
-    });
-}
-
-connectToDatabase(process.env.MONGODB_URI);
- 
+mongoose.connect(process.env.MONGODB_URI)
+    .then(() => console.log("Connected to MongoDB"))
+    .catch(err => console.error("Failed to connect to MongoDB", err));
 
 // Route to display the form and list posts
 app.get('/', async (req, res, next) => {
@@ -49,6 +39,5 @@ app.use((err, req, res, next) => {
     res.status(500).send('Something broke!');
 });
 
-module.exports = app;
-
- 
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
