@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path');
 const dbConnect = require('./lib/dbConnect');
 const Post = require('./models/Post');
 const app = express();
