@@ -5,7 +5,7 @@ const Post = require('../models/Post');
 
 const router = express.Router();
 
-router.get('/api/posts', async (req, res) => {
+router.get('/posts', async (req, res) => {
     await dbConnect();
     try {
         const posts = await Post.find();
@@ -16,7 +16,7 @@ router.get('/api/posts', async (req, res) => {
     }
 });
 
-router.post('/api/posts', async (req, res) => {
+router.post('/posts', async (req, res) => {
     await dbConnect();
     try {
         const newPost = new Post(req.body);
