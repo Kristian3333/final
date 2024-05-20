@@ -3,9 +3,6 @@
   "version": "1.0.0",
   "description": "conects to mongodb and users can post",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "author": "KGB",
   "license": "MIT",
   "dependencies": {
