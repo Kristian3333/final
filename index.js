@@ -1,13 +1,18 @@
+const path = require('path');
 const express = require('express');
 const app = express();
 
-// Configure your middleware, routes, etc., as usual
+// Set the views directory
+app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+
+// Continue with your existing middleware and routes setup
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// Define a route to render the index view
 app.get('/', (req, res) => {
-    res.render('index', { title: 'Home Page' }); // Assumes there is an `index.ejs` in the views folder
+    res.render('index', { title: 'Home Page' }); // Ensure 'index' matches the name of your EJS file
 });
 
 // Error handling middleware
@@ -16,6 +21,4 @@ app.use((err, req, res, next) => {
     res.status(500).send('Something broke!');
 });
 
-
-// Export the app instance for Vercel to use
 module.exports = app;
