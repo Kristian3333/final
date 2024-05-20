@@ -21,7 +21,7 @@ router.post('/api/posts', async (req, res) => {
     try {
         const newPost = new Post(req.body);
         await newPost.save();
-        res.status(201).send('Post created');
+        res.status(201).redirect('/');  // Redirect to the home page after post creation
     } catch (error) {
         console.error(error);
         res.status(500).send('Error saving post');
