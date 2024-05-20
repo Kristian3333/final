@@ -7,8 +7,7 @@ require('dotenv').config({ path: '.env.local' });
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
-/*uri ='mongodb+srv://KristianG:AfMVWWRqaA8bOPhX@cluster0.92umuab.mongodb.net/pueblo'*/
+ 
 
 
 mongoose.connect(process.env.MONGODB_URI)
@@ -23,6 +22,7 @@ const PostSchema = new mongoose.Schema({
 });
 
 const Post = mongoose.models.Post || mongoose.model('Post', PostSchema);
+module.exports = Post;
 
 // Route to display the form and list posts
 app.get('/', async (req, res) => {
