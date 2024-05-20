@@ -3,9 +3,10 @@ const mongoose = require("mongoose");
 const bodyParser = require('body-parser');
 require('dotenv').config({ path: '.env.local' });
 
+
 const app = express();
 app.use(express.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true }));
 
 /*uri ='mongodb+srv://KristianG:AfMVWWRqaA8bOPhX@cluster0.92umuab.mongodb.net/pueblo'*/
 
@@ -21,7 +22,7 @@ const PostSchema = new mongoose.Schema({
     date: { type: Date, default: Date.now }
 });
 
-const Post = mongoose.model('Post', PostSchema);
+const Post = mongoose.models.Post || mongoose.model('Post', PostSchema);
 
 // Route to display the form and list posts
 app.get('/', async (req, res) => {
@@ -86,5 +87,4 @@ app.post('/', async (req, res) => {
     }
 });
 
- 
-app.listen(PORT, () => console.log('Server running'));
+  
