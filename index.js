@@ -6,11 +6,16 @@ app.set('view engine', 'ejs');
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+app.get('/', (req, res) => {
+    res.render('index', { title: 'Home Page' }); // Assumes there is an `index.ejs` in the views folder
+});
+
 // Error handling middleware
 app.use((err, req, res, next) => {
     console.error(err.stack);
     res.status(500).send('Something broke!');
 });
+
 
 // Export the app instance for Vercel to use
 module.exports = app;
