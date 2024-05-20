@@ -65,6 +65,8 @@ app.get('/', async (req, res) => {
             </form>
         </body>
         </html>`;
+
+        res.setHeader('Content-Type', 'text/html');
         res.send(html);
     } catch (error) {
         console.error("Error retrieving posts:", error);
